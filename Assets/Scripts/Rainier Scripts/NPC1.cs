@@ -34,21 +34,12 @@ public class NPC1 : MonoBehaviour
 		behaviorNPC1();
 	}
 
-	void OnTriggerStay(Collider other) 
-	{
-		if (other.tag == "Boundries") 
-		{
-			iTween.LookTo(gameObject, iTween.Hash ("looktarget", boundries.transform.position, "axis", "y"));
-			Debug.Log ("im out");
-		}
-	}
-
 
 	IEnumerator randomNumberCreator()
 	{
 		randomRunning = true;
 		npc1Up = Random.Range (1, 3);
-		npc1Forward = Random.Range (1, 3);
+		npc1Forward = Random.Range (-1, 1);
 		npc1UpOnly = Random.Range (1, 4);
 		yield return new WaitForSeconds(14);
 		randomRunning = false;
@@ -58,7 +49,7 @@ public class NPC1 : MonoBehaviour
 	{
 		if (delayBehaviorNPC1Switch == false) 
 		{
-			iTween.MoveAdd (gameObject, iTween.Hash ("y", npc1Up, "easeType", "easeInOutExpo","delay", 1));
+			iTween.MoveAdd (gameObject, iTween.Hash ("y", npc1Up, "x", npc1Forward, "easeType", "easeInOutExpo","delay", 1));
 			StartCoroutine (delayBehaviorNPC1());
 		}
 		else
