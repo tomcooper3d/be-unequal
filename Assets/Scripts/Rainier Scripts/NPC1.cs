@@ -13,6 +13,7 @@ public class NPC1 : MonoBehaviour
 	public int npc1UpOnly;
 	public int npc1Up;
 	public int npc1Forward;
+	public int npc1Delay;
 
 	// Use this for initialization
 	void Start () 
@@ -41,6 +42,7 @@ public class NPC1 : MonoBehaviour
 		npc1Up = Random.Range (1, 3);
 		npc1Forward = Random.Range (-1, 1);
 		npc1UpOnly = Random.Range (1, 4);
+		npc1Delay = Random.Range (1, 6);
 		yield return new WaitForSeconds(14);
 		randomRunning = false;
 	}
@@ -49,12 +51,12 @@ public class NPC1 : MonoBehaviour
 	{
 		if (delayBehaviorNPC1Switch == false) 
 		{
-			iTween.MoveAdd (gameObject, iTween.Hash ("y", npc1Up, "x", npc1Forward, "easeType", "easeInOutExpo","delay", 1));
+			iTween.MoveAdd (gameObject, iTween.Hash ("y", npc1Up, "x", npc1Forward, "easeType", "easeInOutExpo","delay", npc1Delay));
 			StartCoroutine (delayBehaviorNPC1());
 		}
 		else
 		{
-			iTween.MoveAdd (gameObject, iTween.Hash ("y", npc1UpOnly, "easeType", "easeInOutExpo", "delay", 1));
+			iTween.MoveAdd (gameObject, iTween.Hash ("y", npc1UpOnly, "easeType", "easeInOutExpo", "delay", npc1Delay));
 		}
 	}
 	
