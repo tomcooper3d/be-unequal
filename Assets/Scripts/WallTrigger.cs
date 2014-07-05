@@ -37,25 +37,17 @@ public class WallTrigger : MonoBehaviour {
 	void OnTriggerEnter(Collider collisionInfo) {
 
 		if (collisionInfo.gameObject == topColliderObject) {
-			transitionInEffect = true;
-			blockingColliderUntilExit = bottomArrivalColliderObject;
 			mapParent.moveTop ();
 			transform.position = new Vector3(topArrivalColliderObject.transform.position.x, transform.position.y, transform.position.z);
 		} else if (collisionInfo.gameObject == bottomColliderObject) {
-			transitionInEffect = true;
-			blockingColliderUntilExit = topArrivalColliderObject;
 			mapParent.moveBottom ();
 			transform.position = new Vector3(bottomArrivalColliderObject.transform.position.x, transform.position.y, transform.position.z);
 		} else if (collisionInfo.gameObject == leftColliderObject) {
-			transitionInEffect = true;
 			mapParent.moveLeft ();
 			transform.position = new Vector3(transform.position.x, transform.position.y, rightArrivalColliderObject.transform.position.z);
-			blockingColliderUntilExit = rightArrivalColliderObject;
 		} else if (collisionInfo.gameObject == rightColliderObject) {
-			transitionInEffect = true;
 			mapParent.moveRight ();
 			transform.position = new Vector3(transform.position.x, transform.position.y, leftArrivalColliderObject.transform.position.z);
-			blockingColliderUntilExit = leftArrivalColliderObject;
 		} else { } 
 	}
 
