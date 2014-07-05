@@ -12,7 +12,7 @@ public class WallTrigger : MonoBehaviour {
 	public GameObject rightColliderObject;
 
 	private bool transitionInEffect = false;
-
+	private GameObject blockingColliderUntilExit;
 	void Start () {
 		mapParent = mapParentObject.GetComponent<MapParent> ();
 	}
@@ -20,22 +20,28 @@ public class WallTrigger : MonoBehaviour {
 		if (transitionInEffect) return;
 		if (collisionInfo.gameObject == topColliderObject) {
 			transitionInEffect = true;
-			transform.position = new Vector3(-transform.position.x, transform.position.y, transform.position.z);
+			blockingColliderUntilExit = bottomColliderObject;
+			transform.position = new Vector3(-transform.position.x-2.0f, transform.position.y, transform.position.z);
 			mapParent.moveTop ();
 		} else if (collisionInfo.gameObject == bottomColliderObject) {
 			transitionInEffect = true;
-			transform.position = new Vector3(-transform.position.x, -transform.position.y, transform.position.z);
+			blockingColliderUntilExit = topColliderObject;
+			transform.position = new Vector3(-transform.position.x-0.5f, -transform.position.y, transform.position.z);
 			mapParent.moveBottom ();
 		} else if (collisionInfo.gameObject == leftColliderObject) {
 			transitionInEffect = true;
+			transform.position = new Vector3(transform.position.x, transform.position.y, -transform.position.z+2.0f);
+			blockingColliderUntilExit = rightColliderObject;
 			mapParent.moveLeft ();
 		} else if (collisionInfo.gameObject == rightColliderObject) {
 			transitionInEffect = true;
+			transform.position = new Vector3(transform.position.x, transform.position.y, -transform.position.z+1.5f);
+			blockingColliderUntilExit = leftColliderObject;
 			mapParent.moveRight ();
 		} else { } 
 	}
 	void OnTriggerExit(Collider collisionInfo) {
-		if (collisionInfo.gameObject == topColliderObject || collisionInfo.gameObject == bottomColliderObject || collisionInfo.gameObject == leftColliderObject || collisionInfo.gameObject == rightColliderObject) {
+		if (collisionInfo.gameObject == blockingColliderUntilExit) {
 			transitionInEffect = false;
 		}
 	}
