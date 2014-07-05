@@ -13,8 +13,6 @@ public class NPCController : MonoBehaviour
 	private GameObject[] NPC1Array;
 	private GameObject[] NPC2Array;
 	private GameObject[] NPC3Array;
-	private GameObject[] NPC4Array;
-	private GameObject[] NPC5Array;
 	private bool tempSwitch;
 
 
@@ -28,8 +26,6 @@ public class NPCController : MonoBehaviour
 		NPC1Array  = GameObject.FindGameObjectsWithTag("NPC 1");
 		NPC2Array  = GameObject.FindGameObjectsWithTag("NPC 2");
 		NPC3Array  = GameObject.FindGameObjectsWithTag("NPC 3");
-		NPC4Array  = GameObject.FindGameObjectsWithTag("NPC 4");
-		NPC5Array  = GameObject.FindGameObjectsWithTag("NPC 5");
 	}
 	
 	// Update is called once per frame
@@ -40,19 +36,9 @@ public class NPCController : MonoBehaviour
 			FindNPC1();
 			FindNPC2();
 			FindNPC3();
-			FindNPC4();
-			FindNPC5();
 			tempSwitch = false;
 		}
-
-		//behaviorNPC2();
-		//behaviorNPC3();
-		//behaviorNPC4();
-		//behaviorNPC5();
 	}
-
-
-
 
 	//-------------------------------------------------------------------------------------NPC 1 BEHAVIOR START
 	void FindNPC1()
@@ -102,43 +88,4 @@ public class NPCController : MonoBehaviour
 
 	//-------------------------------------------------------------------------------------NPC 3 BEHAVIOR END
 
-	//-------------------------------------------------------------------------------------NPC 4 BEHAVIOR START
-
-	void FindNPC4()
-	{
-		
-		NPC4Array = GameObject.FindGameObjectsWithTag("NPC 4");
-	}
-
-	IEnumerator behaviorNPC4()
-	{
-		foreach (GameObject NPC in NPC4Array)
-		{
-			currentCube = NPC;
-			iTween.MoveAdd (currentCube, iTween.Hash ("y", 2, "easeType", "easeInOutExpo", "loopType", "none", "delay", 1));
-		}
-		yield return new WaitForSeconds(5);
-	}
-
-	//-------------------------------------------------------------------------------------NPC 4 BEHAVIOR END
-
-	//-------------------------------------------------------------------------------------NPC 5 BEHAVIOR START
-
-	void FindNPC5()
-	{
-		NPC5Array = GameObject.FindGameObjectsWithTag("NPC 5");
-	}
-
-	IEnumerator behaviorNPC5()
-	{
-		foreach (GameObject NPC in NPC5Array)
-		{
-			currentCube = NPC;
-			iTween.MoveAdd (currentCube, iTween.Hash ("y", 2, "easeType", "easeInOutExpo", "loopType", "none", "delay", 1));
-		}
-		yield return new WaitForSeconds(5);
-	}
-	
-	//-------------------------------------------------------------------------------------NPC 5 BEHAVIOR END
-	
 }
