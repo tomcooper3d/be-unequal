@@ -11,38 +11,52 @@ public class WallTrigger : MonoBehaviour {
 	public GameObject leftColliderObject;
 	public GameObject rightColliderObject;
 
+	public GameObject topArrivalColliderObject;
+	public GameObject bottomArrivalColliderObject;
+	public GameObject leftArrivalColliderObject;
+	public GameObject rightArrivalColliderObject;
+	
 	private bool transitionInEffect = false;
 	private GameObject blockingColliderUntilExit;
 	void Start () {
 		mapParent = mapParentObject.GetComponent<MapParent> ();
 	}
+
+	public void updateTriggersWithFrame(Frame frame) {
+		topColliderObject = frame.topColliderObject;
+		bottomColliderObject = frame.bottomColliderObject;
+		leftColliderObject = frame.leftColliderObject;
+		rightColliderObject = frame.rightColliderObject;
+
+		leftArrivalColliderObject = frame.leftArrivalColliderObject;
+		rightArrivalColliderObject = frame.rightArrivalColliderObject;
+		topArrivalColliderObject = frame.topArrivalColliderObject;
+		bottomArrivalColliderObject = frame.bottomArrivalColliderObject;
+	}
+
 	void OnTriggerEnter(Collider collisionInfo) {
-		if (transitionInEffect) return;
+
 		if (collisionInfo.gameObject == topColliderObject) {
 			transitionInEffect = true;
-			blockingColliderUntilExit = bottomColliderObject;
-			transform.position = new Vector3(-transform.position.x-2.0f, transform.position.y, transform.position.z);
+			blockingColliderUntilExit = bottomArrivalColliderObject;
 			mapParent.moveTop ();
+			transform.position = new Vector3(topArrivalColliderObject.transform.position.x, transform.position.y, transform.position.z);
 		} else if (collisionInfo.gameObject == bottomColliderObject) {
 			transitionInEffect = true;
-			blockingColliderUntilExit = topColliderObject;
-			transform.position = new Vector3(-transform.position.x-0.5f, -transform.position.y, transform.position.z);
+			blockingColliderUntilExit = topArrivalColliderObject;
 			mapParent.moveBottom ();
+			transform.position = new Vector3(bottomArrivalColliderObject.transform.position.x, transform.position.y, transform.position.z);
 		} else if (collisionInfo.gameObject == leftColliderObject) {
 			transitionInEffect = true;
-			transform.position = new Vector3(transform.position.x, transform.position.y, -transform.position.z+2.0f);
-			blockingColliderUntilExit = rightColliderObject;
 			mapParent.moveLeft ();
+			transform.position = new Vector3(transform.position.x, transform.position.y, rightArrivalColliderObject.transform.position.z);
+			blockingColliderUntilExit = rightArrivalColliderObject;
 		} else if (collisionInfo.gameObject == rightColliderObject) {
 			transitionInEffect = true;
-			transform.position = new Vector3(transform.position.x, transform.position.y, -transform.position.z+1.5f);
-			blockingColliderUntilExit = leftColliderObject;
 			mapParent.moveRight ();
+			transform.position = new Vector3(transform.position.x, transform.position.y, leftArrivalColliderObject.transform.position.z);
+			blockingColliderUntilExit = leftArrivalColliderObject;
 		} else { } 
 	}
-	void OnTriggerExit(Collider collisionInfo) {
-		if (collisionInfo.gameObject == blockingColliderUntilExit) {
-			transitionInEffect = false;
-		}
-	}
+
 }

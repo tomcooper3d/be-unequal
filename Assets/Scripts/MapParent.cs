@@ -9,17 +9,20 @@ public class MapParent : MonoBehaviour {
 	public int startX;
 	public int startY;
 	public GameObject startTile;
+	public GameObject sphereObject;
 
 	private GameObject[,] tileMap;
 	private int currentX;
 	private int currentY;
 	private Vector3 currentPos;
+	private WallTrigger wallTrigger;
 
 	void Start () {
 		tileMap = new GameObject[width, height];
 		currentX = startX;
 		currentY = startY;
 		currentPos = startTile.transform.position;
+		wallTrigger = sphereObject.GetComponent<WallTrigger> ();
 
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
@@ -37,10 +40,17 @@ public class MapParent : MonoBehaviour {
 				tileMap[i,j] = tile;
 			}
 		}
+		updateWallTriggers ();
 	}
 
 	void Update () {
 	
+	}
+
+	void updateWallTriggers () {
+		GameObject tile = allTiles[tileMapCoordToOther(currentX, currentY)];
+		Frame frame = tile.GetComponent<Frame> ();
+		wallTrigger.updateTriggersWithFrame (frame);
 	}
 
 	int tileMapCoordToOther (int i, int j) {
@@ -63,6 +73,7 @@ public class MapParent : MonoBehaviour {
 					}
 				}
 			}
+			updateWallTriggers ();
 		}
 	}
 	
@@ -82,8 +93,7 @@ public class MapParent : MonoBehaviour {
 					}
 				}
 			}
-			Debug.Log("x " + currentX + "y " + currentY);
-			allTiles[tileMapCoordToOther(currentX, currentY)].renderer.enabled = true;
+			updateWallTriggers ();
 		}		
 	}
 	
@@ -105,6 +115,7 @@ public class MapParent : MonoBehaviour {
 					}
 				}
 			}
+			updateWallTriggers ();
 		}		
 	}
 
@@ -124,6 +135,7 @@ public class MapParent : MonoBehaviour {
 					}
 				}
 			}
+			updateWallTriggers ();
 		}		
 	}
 }
