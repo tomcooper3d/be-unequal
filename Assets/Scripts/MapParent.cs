@@ -8,15 +8,18 @@ public class MapParent : MonoBehaviour {
 	public int height = 2;
 	public int startX;
 	public int startY;
+	public GameObject startTile;
 
 	private GameObject[,] tileMap;
 	private int currentX;
 	private int currentY;
-	
+	private Vector3 currentPos;
+
 	void Start () {
 		tileMap = new GameObject[width, height];
 		currentX = startX;
 		currentY = startY;
+		currentPos = startTile.transform.position;
 
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
@@ -24,8 +27,13 @@ public class MapParent : MonoBehaviour {
 
 				int mapIdxY = i - currentX;
 				int mapIdxX = j - currentY;
+				tile.transform.position = currentPos;
 
-				tile.transform.position =  new Vector3( mapIdxX * 5, tile.transform.position.y, mapIdxY * 5);
+				if (i == 0 && j == 0) {
+					tile.SetActive(true);
+				} else {
+					tile.SetActive(false);
+				}
 				tileMap[i,j] = tile;
 			}
 		}
@@ -49,9 +57,9 @@ public class MapParent : MonoBehaviour {
 					GameObject tile = allTiles[tileMapCoordToOther(i, j)];
 
 					if (i == currentX && j == currentY) {
-						tile.transform.position = Vector3.zero;
+						tile.SetActive(true);
 					} else {
-						tile.transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y, tile.transform.position.z+5);
+						tile.SetActive(false);
 					}
 				}
 			}
@@ -68,12 +76,14 @@ public class MapParent : MonoBehaviour {
 					GameObject tile = allTiles[tileMapCoordToOther(i, j)];
 
 					if (i == currentX && j == currentY) {
-						tile.transform.position = Vector3.zero;
+						tile.SetActive(true);
 					} else {
-						tile.transform.position = new Vector3(tile.transform.position.x, tile.transform.position.y, tile.transform.position.z-5);
+						tile.SetActive(false);
 					}
 				}
 			}
+			Debug.Log("x " + currentX + "y " + currentY);
+			allTiles[tileMapCoordToOther(currentX, currentY)].renderer.enabled = true;
 		}		
 	}
 	
@@ -89,9 +99,9 @@ public class MapParent : MonoBehaviour {
 					GameObject tile = allTiles[tileMapCoordToOther(i, j)];
 
 					if (i == currentX && j == currentY) {
-						tile.transform.position = Vector3.zero;
+						tile.SetActive(true);
 					} else {
-						tile.transform.position = new Vector3(tile.transform.position.x -5, tile.transform.position.y, tile.transform.position.z);
+						tile.SetActive(false);
 					}
 				}
 			}
@@ -108,9 +118,9 @@ public class MapParent : MonoBehaviour {
 					GameObject tile = allTiles[tileMapCoordToOther(i, j)];
 
 					if (i == currentX && j == currentY) {
-						tile.transform.position = Vector3.zero;
+						tile.SetActive(true);
 					} else {
-						tile.transform.position = new Vector3(tile.transform.position.x + 5, tile.transform.position.y, tile.transform.position.z);
+						tile.SetActive(false);
 					}
 				}
 			}
