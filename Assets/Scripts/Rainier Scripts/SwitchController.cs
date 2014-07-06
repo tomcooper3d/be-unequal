@@ -95,6 +95,7 @@ public class SwitchController : MonoBehaviour
 	void Update () 
 	{
 		if (switchCurrentValue == 100 && !levelWin) {
+			Debug.Log ("win");
 			this.GetComponent<SphereSpawn>().win();
 			levelWin = true;
 		}	
