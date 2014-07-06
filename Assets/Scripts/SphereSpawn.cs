@@ -37,8 +37,9 @@ public class SphereSpawn : MonoBehaviour {
 	public void win () {
 		halo.SetActive(true);
 		this.GetComponent<CharacterMotor>().canControl = false;	
+		this.GetComponent<CharacterMotor>().movement.maxFallSpeed = 0.0f;
 		iTween.FadeTo (halo, iTween.Hash ("amount", 1.0f, "oncomplete", "doHalo", "time", 1.0f, "easetype", iTween.EaseType.easeInCubic));
-		iTween.MoveBy(this.gameObject, iTween.Hash("y", -asendFromHeight, "easeType", "easeInOutExpo", "oncomplete", "hideHalo","time", 1.5f));
+		iTween.MoveBy(this.gameObject, iTween.Hash("y", asendFromHeight, "easeType", "easeInOutExpo", "oncomplete", "hideHalo","time", 1.5f));
 		plane.GetComponent<TransitionBackgroundPlane> ().fadeInRoundEnded();
 	}
 }
