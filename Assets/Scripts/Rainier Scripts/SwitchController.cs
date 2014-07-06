@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent (typeof (AudioSource))]
 
 public class SwitchController : MonoBehaviour 
 {
@@ -37,6 +38,13 @@ public class SwitchController : MonoBehaviour
 	private Color onColor;
 	private Color offColor;
 	public bool levelWin;
+
+	public AudioClip switch1Clip;
+	public AudioClip switch2Clip;
+	public AudioClip switch3Clip;
+	public AudioClip switch4Clip;
+	public AudioClip switch5Clip;
+	public AudioClip switch6Clip;
 
 	private GameObject[] switchArrayPlaceHolders;
 	private GameObject[] switchArray;
@@ -100,6 +108,8 @@ public class SwitchController : MonoBehaviour
 			Debug.Log("I Hit a Trigger");
 			if (other.tag == "Switch 1") 
 			{
+				audio.clip = switch1Clip;
+				audio.Play();
 
 				Debug.Log ("I Hit Switch 1");
 				if (!switch1) {
@@ -121,6 +131,10 @@ public class SwitchController : MonoBehaviour
 			}
 			if (other.tag == "Switch 2") 
 			{
+
+				audio.clip = switch2Clip;
+				audio.Play();
+
 				Debug.Log("I Hit Switch 2");
 				if(!switch2)
 				{
@@ -144,6 +158,9 @@ public class SwitchController : MonoBehaviour
 			}
 			if (other.tag == "Switch 3") 
 			{
+				audio.clip = switch3Clip;
+				audio.Play();
+				
 				Debug.Log("I Hit Switch 3");
 				if(!switch3)
 				{
@@ -167,6 +184,9 @@ public class SwitchController : MonoBehaviour
 			}
 			if (other.tag == "Switch 4") 
 			{
+				audio.clip = switch4Clip;
+				audio.Play();
+				
 				Debug.Log("I Hit Switch 4");
 				if(!switch4)
 				{
@@ -190,6 +210,9 @@ public class SwitchController : MonoBehaviour
 			}
 			if (other.tag == "Switch 5") 
 			{
+				audio.clip = switch5Clip;
+				audio.Play();
+				
 				Debug.Log("I Hit Switch 5");
 				if(!switch5)
 				{
@@ -213,6 +236,9 @@ public class SwitchController : MonoBehaviour
 			}
 			if (other.tag == "Switch 6") 
 			{
+				audio.clip = switch6Clip;
+				audio.Play();
+
 				Debug.Log("I Hit Switch 6");
 				if(!switch6)
 				{
@@ -249,23 +275,7 @@ public class SwitchController : MonoBehaviour
 			otherCurrentValue = 0;
 		}
 	}
-	/*
-	void ParticleSytemChange()
-	{
-		float switchCurrentValuePercentage = (switchCurrentValue/100);
-		sParticle.emissionRate = fParticle.emissionRate * switchCurrentValuePercentage;
-		sParticle.gravityModifier = fParticle.gravityModifier * switchCurrentValuePercentage;
-		sParticle.maxParticles = fParticle.maxParticles;
-		sParticle.simulationSpace = fParticle.simulationSpace;
-		sParticle.startColor = fParticle.startColor;
-		sParticle.startDelay = fParticle.startDelay * switchCurrentValuePercentage;
-		sParticle.startLifetime = fParticle.startLifetime * switchCurrentValuePercentage;
-		sParticle.startRotation = fParticle.startRotation * switchCurrentValuePercentage;
-		sParticle.startSize = fParticle.startSize * switchCurrentValuePercentage;
-		sParticle.startSpeed = fParticle.startSpeed * switchCurrentValuePercentage;
-		sParticle.renderer.material = fParticle.renderer.material;
-	}
-	*/
+
 	void ParticleSytemChange()
 	{
 		float switchCurrentValuePercentage = (switchCurrentValue/100);
