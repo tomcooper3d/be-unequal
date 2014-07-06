@@ -104,14 +104,8 @@ public class SwitchController : MonoBehaviour
 	{
 		if(levelWin == false)
 		{
-
-			Debug.Log("I Hit a Trigger");
 			if (other.tag == "Switch 1") 
 			{
-				//audio.clip = switch1Clip;
-				//audio.Play();
-				levelWin = true;
-				return;
 				Debug.Log ("I Hit Switch 1");
 				if (!switch1) {
 						switch1 = true;
