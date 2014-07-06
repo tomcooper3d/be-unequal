@@ -79,8 +79,6 @@ public class SwitchController : MonoBehaviour
 		fParticle = (ParticleSystem)firstParticle.GetComponent("ParticleSystem");
 		sParticle = (ParticleSystem)secondParticle.GetComponent("ParticleSystem");
 		tParticle = (ParticleSystem)thirdParticle.GetComponent("ParticleSystem");
-
-
 		ParticleSytemChange ();
 		
 	}
@@ -91,7 +89,6 @@ public class SwitchController : MonoBehaviour
 		if (switchCurrentValue == 100) 
 		{
 			levelWin = true;
-
 		}
 	}
 
@@ -128,6 +125,7 @@ public class SwitchController : MonoBehaviour
 					switch2 = true;
 					switch2Object.renderer.material.color = onColor;
 					switchCurrentValue += switch2Value;
+					OtherParticle();
 					ParticleSytemChange();
 					
 				}
@@ -148,6 +146,7 @@ public class SwitchController : MonoBehaviour
 					switch3 = true;
 					switch3Object.renderer.material.color = onColor;
 					switchCurrentValue += switch3Value;
+					OtherParticle();
 					ParticleSytemChange();
 					
 				}
@@ -228,6 +227,7 @@ public class SwitchController : MonoBehaviour
 
 	void OtherParticle()
 	{
+		Debug.Log ("Other ran");
 		if (switchCurrentValue < 100) 
 		{
 			otherCurrentValue = 100 - switchCurrentValue;
