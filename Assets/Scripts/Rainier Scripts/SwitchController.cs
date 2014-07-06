@@ -1,0 +1,254 @@
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+
+public class SwitchController : MonoBehaviour 
+{
+	private int currentLevel;
+	private float totalTime;
+
+	private bool switch1;
+	private bool switch2;
+	private bool switch3;
+	private bool switch4;
+	private bool switch5;
+	private bool switch6;
+	private GameObject switch1Object;
+	private GameObject switch2Object;
+	private GameObject switch3Object;
+	private GameObject switch4Object;
+	private GameObject switch5Object;
+	private GameObject switch6Object;
+	private GameObject firstParticle;
+	private GameObject secondParticle;
+	private ParticleSystem fParticle;
+	private ParticleSystem sParticle;
+	public float switch1Value;
+	public float switch2Value;
+	public float switch3Value;
+	public float switch4Value;
+	public float switch5Value;
+	public float switch6Value;
+	private float switchCurrentValue;
+	private Color onColor;
+	private Color offColor;
+	public bool levelWin;
+
+	private GameObject[] switchArrayPlaceHolders;
+	private GameObject[] switchArray;
+
+
+	void Awake () 
+	{
+		switch1Object = GameObject.FindWithTag ("Switch 1");
+		switch2Object = GameObject.FindWithTag ("Switch 2");
+		switch3Object = GameObject.FindWithTag ("Switch 3");
+		switch4Object = GameObject.FindWithTag ("Switch 4");
+		switch5Object = GameObject.FindWithTag ("Switch 5");
+		switch6Object = GameObject.FindWithTag ("Switch 6");
+
+		Dictionary<int, GameObject> switchDictionary = new Dictionary<int, GameObject>();
+		switchDictionary.Add(1, switch1Object);
+		switchDictionary.Add(2, switch2Object);
+		switchDictionary.Add(3, switch3Object);
+		switchDictionary.Add(4, switch4Object);
+		switchDictionary.Add(5, switch5Object);
+		switchDictionary.Add(6, switch6Object);
+
+		switchArrayPlaceHolders  = GameObject.FindGameObjectsWithTag("Switch");
+		if (switchArrayPlaceHolders.Length < 1 || switchArrayPlaceHolders.Length > 5) 
+		{
+			Debug.Log ("Not enough Switches are placed! OR to many. (6:Max/1:Min)");
+		} 
+		else 
+		{
+			for(int i = 0; i < switchArrayPlaceHolders.Length; i++)
+			{
+
+			}
+		}
+	}
+
+	// Use this for initialization
+	void Start () 
+	{
+		switch1 = false;
+		switch2 = false;
+		switch3 = false;
+		switch4 = false;
+		switch5 = false;
+		switch6 = false;
+		switchCurrentValue = 0;
+		levelWin = false;
+		onColor = new Color(0F, 1F, 0F, 0.5F);
+		offColor = new Color(1F, 0F, 0F, 0.5F);
+
+		firstParticle = GameObject.FindWithTag ("First Particle");
+		secondParticle = GameObject.FindWithTag ("Second Particle");
+		fParticle = (ParticleSystem)firstParticle.GetComponent("ParticleSystem");
+		sParticle = (ParticleSystem)secondParticle.GetComponent("ParticleSystem");
+
+	}
+	
+	// Update is called once per frame
+	void Update () 
+	{
+		if (switchCurrentValue == 100) 
+		{
+			levelWin = true;
+
+		}
+	}
+
+	void OnTriggerEnter(Collider other) 
+	{
+		if(levelWin == false)
+		{
+			Debug.Log("I Hit a Trigger");
+			if (other.tag == "Switch 1") 
+			{
+				Debug.Log ("I Hit Switch 1");
+				if (!switch1) {
+						switch1 = true;
+						switch1Object.renderer.material.color = onColor; 
+						switchCurrentValue += switch1Value;
+						ParticleSytemChange ();
+
+				} else {
+						switch1 = false;
+						switch1Object.renderer.material.color = offColor; 
+						switchCurrentValue -= switch1Value;
+						ParticleSytemChange ();
+				}
+			}
+			if (other.tag == "Switch 2") 
+			{
+				Debug.Log("I Hit Switch 2");
+				if(!switch2)
+				{
+					switch2 = true;
+					switch2Object.renderer.material.color = onColor;
+					switchCurrentValue += switch2Value;
+					ParticleSytemChange();
+					
+				}
+				else
+				{
+					switch2 = false;
+					switch2Object.renderer.material.color = offColor;
+					switchCurrentValue -= switch2Value;
+					ParticleSytemChange();
+				}
+			}
+			if (other.tag == "Switch 3") 
+			{
+				Debug.Log("I Hit Switch 3");
+				if(!switch3)
+				{
+					switch3 = true;
+					switch3Object.renderer.material.color = onColor;
+					switchCurrentValue += switch3Value;
+					ParticleSytemChange();
+					
+				}
+				else
+				{
+					switch3 = false;
+					switch3Object.renderer.material.color = offColor ;
+					switchCurrentValue -= switch3Value;
+					ParticleSytemChange();
+				}
+			}
+			if (other.tag == "Switch 4") 
+			{
+				Debug.Log("I Hit Switch 4");
+				if(!switch4)
+				{
+					switch4 = true;
+					switch4Object.renderer.material.color = onColor;
+					switchCurrentValue += switch4Value;
+					ParticleSytemChange();
+					
+				}
+				else
+				{
+					switch4 = false;
+					switch4Object.renderer.material.color = offColor;
+					switchCurrentValue -= switch4Value;
+					ParticleSytemChange();
+				}
+			}
+			if (other.tag == "Switch 5") 
+			{
+				Debug.Log("I Hit Switch 5");
+				if(!switch5)
+				{
+					switch5 = true;
+					switch5Object.renderer.material.color = onColor; 
+					switchCurrentValue += switch5Value;
+					ParticleSytemChange();
+					
+				}
+				else
+				{
+					switch5 = false;
+					switch5Object.renderer.material.color = offColor;
+					switchCurrentValue -= switch5Value;
+					ParticleSytemChange();
+				}
+			}
+			if (other.tag == "Switch 6") 
+			{
+				Debug.Log("I Hit Switch 6");
+				if(!switch6)
+				{
+					switch6 = true;
+					switch6Object.renderer.material.color = onColor;
+					switchCurrentValue += switch6Value;
+					ParticleSytemChange();
+					
+				}
+				else
+				{
+					switch6 = false;
+					switch6Object.renderer.material.color = offColor;
+					switchCurrentValue -= switch6Value;
+					ParticleSytemChange();
+				}
+			}
+		}
+	}
+
+	void ParticleSytemCopy()
+	{
+		sParticle.emissionRate = fParticle.emissionRate;
+		sParticle.gravityModifier = fParticle.gravityModifier;
+		sParticle.maxParticles = fParticle.maxParticles;
+		sParticle.simulationSpace = fParticle.simulationSpace;
+		sParticle.startColor = fParticle.startColor;
+		sParticle.startDelay = fParticle.startDelay;
+		sParticle.startLifetime = fParticle.startLifetime;
+		sParticle.startRotation = fParticle.startRotation;
+		sParticle.startSize = fParticle.startSize;
+		sParticle.startSpeed = fParticle.startSpeed;
+		sParticle.renderer.material = fParticle.renderer.material;
+	}
+
+	void ParticleSytemChange()
+	{
+		float switchCurrentValuePercentage = (switchCurrentValue/100);
+		sParticle.emissionRate = fParticle.emissionRate * switchCurrentValuePercentage;
+		sParticle.gravityModifier = fParticle.gravityModifier * switchCurrentValuePercentage;
+		sParticle.maxParticles = fParticle.maxParticles;
+		sParticle.simulationSpace = fParticle.simulationSpace;
+		sParticle.startColor = fParticle.startColor;
+		sParticle.startDelay = fParticle.startDelay * switchCurrentValuePercentage;
+		sParticle.startLifetime = fParticle.startLifetime * switchCurrentValuePercentage;
+		sParticle.startRotation = fParticle.startRotation * switchCurrentValuePercentage;
+		sParticle.startSize = fParticle.startSize * switchCurrentValuePercentage;
+		sParticle.startSpeed = fParticle.startSpeed * switchCurrentValuePercentage;
+		sParticle.renderer.material = fParticle.renderer.material;
+	}
+
+}
