@@ -123,7 +123,7 @@ public class SwitchController : MonoBehaviour
 				} else {
 						switch1 = false;
 						switch1Object.renderer.material.color = offColor; 
-						iTween.ScaleTo(switch1Object, iTween.Hash ("y", 1F, "easeType", "easeInOutExpo", "time", 1F));
+						iTween.ScaleTo(switch1Object, iTween.Hash ("y", 5F, "easeType", "easeInOutExpo", "time", 1F));
 						switchCurrentValue -= switch1Value;
 						OtherParticle();
 						ParticleSytemChange ();
@@ -150,7 +150,7 @@ public class SwitchController : MonoBehaviour
 				{
 					switch2 = false;
 					switch2Object.renderer.material.color = offColor;
-					iTween.ScaleTo(switch2Object, iTween.Hash ("y", 1F, "easeType", "easeInOutExpo", "time", 1F));
+					iTween.ScaleTo(switch2Object, iTween.Hash ("y", 5F, "easeType", "easeInOutExpo", "time", 1F));
 					switchCurrentValue -= switch2Value;
 					OtherParticle();
 					ParticleSytemChange();
@@ -176,7 +176,7 @@ public class SwitchController : MonoBehaviour
 				{
 					switch3 = false;
 					switch3Object.renderer.material.color = offColor ;
-					iTween.ScaleTo(switch3Object, iTween.Hash ("y", 1F, "easeType", "easeInOutExpo", "time", 1F));
+					iTween.ScaleTo(switch3Object, iTween.Hash ("y", 5F, "easeType", "easeInOutExpo", "time", 1F));
 					switchCurrentValue -= switch3Value;
 					OtherParticle();
 					ParticleSytemChange();
@@ -202,7 +202,7 @@ public class SwitchController : MonoBehaviour
 				{
 					switch4 = false;
 					switch4Object.renderer.material.color = offColor;
-					iTween.ScaleTo(switch4Object, iTween.Hash ("y", 1F, "easeType", "easeInOutExpo", "time", 1F));
+					iTween.ScaleTo(switch4Object, iTween.Hash ("y", 5F, "easeType", "easeInOutExpo", "time", 1F));
 					switchCurrentValue -= switch4Value;
 					OtherParticle();
 					ParticleSytemChange();
@@ -228,7 +228,7 @@ public class SwitchController : MonoBehaviour
 				{
 					switch5 = false;
 					switch5Object.renderer.material.color = offColor;
-					iTween.ScaleTo(switch5Object, iTween.Hash ("y", 1F, "easeType", "easeInOutExpo", "time", 1F));
+					iTween.ScaleTo(switch5Object, iTween.Hash ("y", 5F, "easeType", "easeInOutExpo", "time", 1F));
 					switchCurrentValue -= switch5Value;
 					OtherParticle();
 					ParticleSytemChange();
@@ -254,7 +254,7 @@ public class SwitchController : MonoBehaviour
 				{
 					switch6 = false;
 					switch6Object.renderer.material.color = offColor;
-					iTween.ScaleTo(switch6Object, iTween.Hash ("y", 1F, "easeType", "easeInOutExpo", "time", 1F));
+					iTween.ScaleTo(switch6Object, iTween.Hash ("y", 5F, "easeType", "easeInOutExpo", "time", 1F));
 					switchCurrentValue -= switch6Value;
 					OtherParticle();
 					ParticleSytemChange();
