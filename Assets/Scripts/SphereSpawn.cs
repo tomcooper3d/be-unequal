@@ -8,17 +8,21 @@ public class SphereSpawn : MonoBehaviour {
 
 	public float asendFromHeight = 20.0f;
 
+	private bool hasSpawned = false;
+
 	void Start () {
+		this.transform.position = new Vector3(transform.position.x, transform.position.y + asendFromHeight, transform.position.z );
+
 		if (waitForButtonPress) {
 			this.GetComponent<CharacterMotor>().canControl = false;
-			this.transform.position = new Vector3(transform.position.x, transform.position.y + asendFromHeight, transform.position.z );
 		}
 	}
 
 	void Update () {
-		if (waitForButtonPress && Input.anyKey) {
+		if ((waitForButtonPress && Input.anyKey) || (!waitForButtonPress && !hasSpawned )) {
 			iTween.MoveBy(this.gameObject, iTween.Hash("y", -asendFromHeight, "easeType", "easeInOutExpo", "oncomplete", "hideHalo"));
 			waitForButtonPress = false;
+			hasSpawned = true;
 		}
 	}
 
