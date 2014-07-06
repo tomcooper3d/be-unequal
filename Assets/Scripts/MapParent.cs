@@ -10,6 +10,7 @@ public class MapParent : MonoBehaviour {
 	public int startY;
 	public GameObject startTile;
 	public GameObject sphereObject;
+	public GameObject sphereParticleSystem;
 
 	private GameObject[,] tileMap;
 	private int currentX;
@@ -23,10 +24,12 @@ public class MapParent : MonoBehaviour {
 		currentY = startY;
 		currentPos = startTile.transform.position;
 		wallTrigger = sphereObject.GetComponent<WallTrigger> ();
-
+		Debug.Log (allTiles.Length);
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
 				int idx = tileMapCoordToOther(i, j);
+
+				Debug.Log ("dd" + idx);
 				if (idx >= allTiles.Length) {
 					break;
 				}
@@ -52,14 +55,21 @@ public class MapParent : MonoBehaviour {
 	}
 
 	void updateWallTriggers () {
-		Debug.Log("x " + currentX + "y " + currentY);
 		GameObject tile = allTiles[tileMapCoordToOther(currentX, currentY)];
 		Frame frame = tile.GetComponent<Frame> ();
 		wallTrigger.updateTriggersWithFrame (frame);
+		sphereParticleSystem.particleSystem.Clear ();
+		sphereParticleSystem.particleSystem.Stop ();
+		StartCoroutine (waitForSecondsAndStartParticleSystem (0.01f));
+	}
+
+	IEnumerator waitForSecondsAndStartParticleSystem (float seconds) {
+		yield return new WaitForSeconds (seconds);
+		sphereParticleSystem.particleSystem.Play ();
 	}
 
 	int tileMapCoordToOther (int i, int j) {
-		return i * width + j;
+		return i * height + j;
 	}
 
 	public void moveLeft() {
