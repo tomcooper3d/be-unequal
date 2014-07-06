@@ -11,6 +11,7 @@ public class MapParent : MonoBehaviour {
 	public GameObject startTile;
 	public GameObject sphereObject;
 	public GameObject sphereParticleSystem;
+	public GameObject transitionBackgroundPlane;
 
 	private GameObject[,] tileMap;
 	private int currentX;
@@ -55,6 +56,9 @@ public class MapParent : MonoBehaviour {
 	}
 
 	void updateWallTriggers () {
+		TransitionBackgroundPlane p = transitionBackgroundPlane.GetComponent<TransitionBackgroundPlane> ();
+		transitionBackgroundPlane.SetActive (true);
+		p.flash ();
 		GameObject tile = allTiles[tileMapCoordToOther(currentX, currentY)];
 		Frame frame = tile.GetComponent<Frame> ();
 		wallTrigger.updateTriggersWithFrame (frame);
