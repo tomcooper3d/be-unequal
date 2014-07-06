@@ -4,6 +4,7 @@ using System.Collections;
 public class CameraRotate : MonoBehaviour {
 
 	public GameObject dd;
+	public AudioSource source;
 	private bool inTransition;
 	private bool currentAngle;
 
@@ -29,9 +30,10 @@ public class CameraRotate : MonoBehaviour {
 		float last = transform.localEulerAngles.y;
 		float dest = (transform.localEulerAngles.y + (left ? 90 : -90)) % 360;
 		float total = 0.0f;
-
+		float val = 225.0f;
+		source.Play();
 		while (enabled) {
-			float deltaAngle = (left ? 150.0f : -150.0f) * Time.deltaTime;
+			float deltaAngle = (left ? val : -val) * Time.deltaTime;
 			
 			if (total > 90) {
 				deltaAngle = dest - last;
@@ -41,6 +43,8 @@ public class CameraRotate : MonoBehaviour {
 			total += Mathf.Abs(deltaAngle);
 			transform.RotateAround (dd.transform.position, Vector3.up, deltaAngle);
 			last = transform.localEulerAngles.y;
+			val -= (500.0f * (total / 80.0f)) * Time.deltaTime;
+			Debug.Log (val);
 			yield return null;
 		}
 
