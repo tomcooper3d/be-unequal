@@ -12,10 +12,7 @@ public class SphereSpawn : MonoBehaviour {
 
 	void Start () {
 		this.transform.position = new Vector3(transform.position.x, transform.position.y + asendFromHeight, transform.position.z );
-
-		if (waitForButtonPress) {
-			this.GetComponent<CharacterMotor>().canControl = false;
-		}
+		this.GetComponent<CharacterMotor>().canControl = false;	
 	}
 
 	void Update () {
