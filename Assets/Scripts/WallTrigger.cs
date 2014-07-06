@@ -39,7 +39,6 @@ public class WallTrigger : MonoBehaviour {
 		if (collisionInfo.gameObject == topColliderObject) {
 			mapParent.moveTop ();
 			transform.position = new Vector3(topArrivalColliderObject.transform.position.x, transform.position.y, transform.position.z);
-			Debug.Log(transform.position);
 		} else if (collisionInfo.gameObject == bottomColliderObject) {
 			mapParent.moveBottom ();
 			transform.position = new Vector3(bottomArrivalColliderObject.transform.position.x, transform.position.y, transform.position.z);

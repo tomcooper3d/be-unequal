@@ -40,7 +40,7 @@ public class MapParent : MonoBehaviour {
 				int mapIdxX = j - currentY;
 				tile.transform.position = currentPos;
 
-				if (i == 0 && j == 0) {
+				if (i == startX && j == startY) {
 					tile.SetActive(true);
 				} else {
 					tile.SetActive(false);
@@ -54,7 +54,7 @@ public class MapParent : MonoBehaviour {
 	void Update () {
 	
 	}
-
+	
 	void updateWallTriggers () {
 		TransitionBackgroundPlane p = transitionBackgroundPlane.GetComponent<TransitionBackgroundPlane> ();
 		transitionBackgroundPlane.SetActive (true);
