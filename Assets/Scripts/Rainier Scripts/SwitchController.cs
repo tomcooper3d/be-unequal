@@ -94,10 +94,10 @@ public class SwitchController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (switchCurrentValue == 100) {
-
+		if (switchCurrentValue == 100 && !levelWin) {
+			this.GetComponent<SphereSpawn>().win();
 			levelWin = true;
-		}
+		}	
 	}
 
 	void OnTriggerEnter(Collider other) 

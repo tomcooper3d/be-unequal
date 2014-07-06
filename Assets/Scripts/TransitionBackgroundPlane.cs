@@ -3,6 +3,8 @@ using System.Collections;
 
 public class TransitionBackgroundPlane : MonoBehaviour {
 
+	public string nextLevelName;
+
 	void Awake () {
 		iTween.FadeTo (this.gameObject, 0.0f, 0.0f);
 	}
@@ -16,6 +18,10 @@ public class TransitionBackgroundPlane : MonoBehaviour {
 	}
 
 	public void fadeInRoundEnded () {
-		iTween.FadeTo (this.gameObject, iTween.Hash("amount", 1.0f, "time", 2.0f, "easetype", iTween.EaseType.easeInQuad));
+		iTween.FadeTo (this.gameObject, iTween.Hash("amount", 1.0f, "time", 2.0f, "easetype", iTween.EaseType.easeInQuad, "oncomplete", "loadNextLevel"));
+	}
+
+	void loadNextLevel() {
+		Application.LoadLevel (nextLevelName);
 	}
 }
