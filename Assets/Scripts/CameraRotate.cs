@@ -44,7 +44,6 @@ public class CameraRotate : MonoBehaviour {
 			transform.RotateAround (dd.transform.position, Vector3.up, deltaAngle);
 			last = transform.localEulerAngles.y;
 			val -= (500.0f * (total / 80.0f)) * Time.deltaTime;
-			Debug.Log (val);
 			yield return null;
 		}
 

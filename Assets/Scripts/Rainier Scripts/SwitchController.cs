@@ -94,8 +94,8 @@ public class SwitchController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (switchCurrentValue == 100) 
-		{
+		if (switchCurrentValue == 100) {
+
 			levelWin = true;
 		}
 	}
@@ -108,9 +108,10 @@ public class SwitchController : MonoBehaviour
 			Debug.Log("I Hit a Trigger");
 			if (other.tag == "Switch 1") 
 			{
-				audio.clip = switch1Clip;
-				audio.Play();
-
+				//audio.clip = switch1Clip;
+				//audio.Play();
+				levelWin = true;
+				return;
 				Debug.Log ("I Hit Switch 1");
 				if (!switch1) {
 						switch1 = true;

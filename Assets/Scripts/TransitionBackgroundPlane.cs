@@ -13,6 +13,9 @@ public class TransitionBackgroundPlane : MonoBehaviour {
 
 	void doneFlash() {
 		iTween.FadeTo (this.gameObject, iTween.Hash("amount", 0.0f, "time", 0.7f));
-		Debug.Log ("done flash");
+	}
+
+	public void fadeInRoundEnded () {
+		iTween.FadeTo (this.gameObject, iTween.Hash("amount", 1.0f, "time", 2.0f, "easetype", iTween.EaseType.easeInQuad));
 	}
 }
