@@ -4,12 +4,13 @@ using System.Collections;
 public class MapParent : MonoBehaviour {
 
 	public GameObject[] allTiles;
-	public int width = 2;
-	public int height = 2;
+	public int width;
+	public int height;
 	public int startX;
 	public int startY;
 	public GameObject startTile;
 	public GameObject sphereObject;
+	public GameObject sphereParticleSystem;
 
 	private GameObject[,] tileMap;
 	private int currentX;
@@ -23,10 +24,16 @@ public class MapParent : MonoBehaviour {
 		currentY = startY;
 		currentPos = startTile.transform.position;
 		wallTrigger = sphereObject.GetComponent<WallTrigger> ();
-
+		Debug.Log (allTiles.Length);
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
-				GameObject tile = allTiles[tileMapCoordToOther(i, j)];
+				int idx = tileMapCoordToOther(i, j);
+
+				Debug.Log ("dd" + idx);
+				if (idx >= allTiles.Length) {
+					break;
+				}
+				GameObject tile = allTiles[idx];
 
 				int mapIdxY = i - currentX;
 				int mapIdxX = j - currentY;
@@ -51,10 +58,18 @@ public class MapParent : MonoBehaviour {
 		GameObject tile = allTiles[tileMapCoordToOther(currentX, currentY)];
 		Frame frame = tile.GetComponent<Frame> ();
 		wallTrigger.updateTriggersWithFrame (frame);
+		sphereParticleSystem.particleSystem.Clear ();
+		sphereParticleSystem.particleSystem.Stop ();
+		StartCoroutine (waitForSecondsAndStartParticleSystem (0.01f));
+	}
+
+	IEnumerator waitForSecondsAndStartParticleSystem (float seconds) {
+		yield return new WaitForSeconds (seconds);
+		sphereParticleSystem.particleSystem.Play ();
 	}
 
 	int tileMapCoordToOther (int i, int j) {
-		return i * width + j;
+		return i * height + j;
 	}
 
 	public void moveLeft() {
@@ -84,7 +99,11 @@ public class MapParent : MonoBehaviour {
 			
 			for (int i = 0; i < width; i++) {
 				for (int j = 0; j < height; j++) {
-					GameObject tile = allTiles[tileMapCoordToOther(i, j)];
+					int idx = tileMapCoordToOther(i, j);
+					if (idx >= allTiles.Length) {
+						break;
+					}
+					GameObject tile = allTiles[idx];
 
 					if (i == currentX && j == currentY) {
 						tile.SetActive(true);
