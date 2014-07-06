@@ -123,7 +123,6 @@ public class SwitchController : MonoBehaviour
 						OtherParticle();
 						ParticleSytemChange ();
 				}
-				switchCurrentValue = 100;
 			}
 			if (other.tag == "Switch 2") 
 			{
