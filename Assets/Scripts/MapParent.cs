@@ -4,8 +4,8 @@ using System.Collections;
 public class MapParent : MonoBehaviour {
 
 	public GameObject[] allTiles;
-	public int width = 2;
-	public int height = 2;
+	public int width;
+	public int height;
 	public int startX;
 	public int startY;
 	public GameObject startTile;
@@ -26,7 +26,11 @@ public class MapParent : MonoBehaviour {
 
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
-				GameObject tile = allTiles[tileMapCoordToOther(i, j)];
+				int idx = tileMapCoordToOther(i, j);
+				if (idx >= allTiles.Length) {
+					break;
+				}
+				GameObject tile = allTiles[idx];
 
 				int mapIdxY = i - currentX;
 				int mapIdxX = j - currentY;
@@ -48,6 +52,7 @@ public class MapParent : MonoBehaviour {
 	}
 
 	void updateWallTriggers () {
+		Debug.Log("x " + currentX + "y " + currentY);
 		GameObject tile = allTiles[tileMapCoordToOther(currentX, currentY)];
 		Frame frame = tile.GetComponent<Frame> ();
 		wallTrigger.updateTriggersWithFrame (frame);
@@ -84,7 +89,11 @@ public class MapParent : MonoBehaviour {
 			
 			for (int i = 0; i < width; i++) {
 				for (int j = 0; j < height; j++) {
-					GameObject tile = allTiles[tileMapCoordToOther(i, j)];
+					int idx = tileMapCoordToOther(i, j);
+					if (idx >= allTiles.Length) {
+						break;
+					}
+					GameObject tile = allTiles[idx];
 
 					if (i == currentX && j == currentY) {
 						tile.SetActive(true);
