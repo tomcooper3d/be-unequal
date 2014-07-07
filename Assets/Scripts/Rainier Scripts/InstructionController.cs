@@ -4,27 +4,22 @@ using System.Collections;
 public class InstructionController : MonoBehaviour 
 {
 	private bool correct;
-	private static bool created = false;
-	
-	void Awake() 
-	{
-		if (!created) 
-		{
-			// this is the first instance - make it persist
-			DontDestroyOnLoad(this.gameObject);
-			created = true;
-		} 
-		else 
-		{
-			// this must be a duplicate from a scene reload - DESTROY!
-			Destroy(this.gameObject);
-		} 
-	}
+	private Vector3 toCameraPosition;
+	private Vector3 toCameraPositionOut;
+	private GameObject inScreen;
+	private GameObject outScreen;
+	private bool rotateInProgress;
+
 
 	// Use this for initialization
 	void Start () 
 	{
 		correct = true;
+		inScreen = GameObject.FindWithTag ("In Screen");
+		outScreen = GameObject.FindWithTag ("Out Screen");
+		toCameraPosition = inScreen.transform.position;
+		toCameraPositionOut = outScreen.transform.position;
+		rotateInProgress = false;
 	}
 	
 	// Update is called once per frame
@@ -62,12 +57,14 @@ public class InstructionController : MonoBehaviour
 			if (Input.GetKeyDown (KeyCode.Q)) 
 			{
 				correct = true;
+				rotateInProgress = true;
 				MoveControls ();
 				return;
 			}
 			if (Input.GetKeyDown (KeyCode.E)) 
 			{
 				correct = true;
+				rotateInProgress = true;
 				MoveControls ();
 				return;
 			}
@@ -83,13 +80,22 @@ public class InstructionController : MonoBehaviour
 
 	void MoveControls()
 	{
+		toCameraPosition = inScreen.transform.position;
+		toCameraPositionOut = outScreen.transform.position;
 		if (correct == false) 
 		{
-			iTween.MoveTo (gameObject, iTween.Hash ("z", -7.8F, "easetype", "easeOutBounce"));
+			iTween.MoveTo (this.gameObject, iTween.Hash ("position", toCameraPosition, "easetype", "easeOutBounce"));
 		} 
-		if (correct == true)
+		if (correct == true && rotateInProgress != true)
 		{
-			iTween.MoveTo (gameObject, iTween.Hash ("z", -22F, "easetype", "easeOutBounce"));
+			iTween.MoveTo (this.gameObject, iTween.Hash ("position", toCameraPositionOut, "easetype", "easeOutBounce"));
 		}
-	}
+		if (correct == true && rotateInProgress == true) 
+		{
+			rotateInProgress = false;
+			toCameraPositionOut = outScreen.transform.position;
+			iTween.MoveTo (this.gameObject, iTween.Hash ("position", toCameraPositionOut, "easetype", "easeOutBounce"));
+		}
+			
+		}
 }
