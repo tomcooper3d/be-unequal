@@ -36,8 +36,6 @@ public class MapParent : MonoBehaviour {
 				}
 				GameObject tile = allTiles[idx];
 
-				int mapIdxY = i - currentX;
-				int mapIdxX = j - currentY;
 				tile.transform.position = currentPos;
 
 				if (i == startX && j == startY) {
@@ -49,19 +47,26 @@ public class MapParent : MonoBehaviour {
 			}
 		}
 		updateWallTriggers ();
+		finishUp();
 	}
 
 	void Update () {
 	
 	}
-	
+
+	public void finishUp () {
+		GameObject tile = allTiles[tileMapCoordToOther(currentX, currentY)];
+		Frame frame = tile.GetComponent<Frame> ();
+		wallTrigger.updateColliders (frame);
+	}
+
 	void updateWallTriggers () {
 		TransitionBackgroundPlane p = transitionBackgroundPlane.GetComponent<TransitionBackgroundPlane> ();
 		transitionBackgroundPlane.SetActive (true);
 		p.flash ();
 		GameObject tile = allTiles[tileMapCoordToOther(currentX, currentY)];
 		Frame frame = tile.GetComponent<Frame> ();
-		wallTrigger.updateTriggersWithFrame (frame);
+		wallTrigger.updateArrivals (frame);
 		sphereParticleSystem.particleSystem.Clear ();
 		sphereParticleSystem.particleSystem.Stop ();
 		StartCoroutine (waitForSecondsAndStartParticleSystem (0.01f));
