@@ -18,37 +18,58 @@ public class WallTrigger : MonoBehaviour {
 	
 	private bool transitionInEffect = false;
 	private GameObject blockingColliderUntilExit;
+
 	void Start () {
 		mapParent = mapParentObject.GetComponent<MapParent> ();
 	}
 
-	public void updateTriggersWithFrame(Frame frame) {
+	public void updateColliders(Frame frame) {
 		topColliderObject = frame.topColliderObject;
 		bottomColliderObject = frame.bottomColliderObject;
 		leftColliderObject = frame.leftColliderObject;
 		rightColliderObject = frame.rightColliderObject;
+	}
 
+	public void updateArrivals(Frame frame) {
 		leftArrivalColliderObject = frame.leftArrivalColliderObject;
 		rightArrivalColliderObject = frame.rightArrivalColliderObject;
 		topArrivalColliderObject = frame.topArrivalColliderObject;
 		bottomArrivalColliderObject = frame.bottomArrivalColliderObject;
 	}
 
-	void OnTriggerEnter(Collider collisionInfo) {
+	IEnumerator enableCollisions() {
+		yield return new WaitForSeconds(0.01f);
+		transitionInEffect = false;
+	}
 
+	void OnTriggerEnter(Collider collisionInfo) {
+		if (transitionInEffect) {
+			return;
+		}
 		if (collisionInfo.gameObject == topColliderObject) {
+			transitionInEffect = true;
 			mapParent.moveTop ();
-			transform.position = new Vector3(topArrivalColliderObject.transform.position.x, transform.position.y, transform.position.z);
-			Debug.Log(transform.position);
+			transform.position = new Vector3(topArrivalColliderObject.transform.position.x, topArrivalColliderObject.transform.position.y, transform.position.z);
+			mapParent.finishUp();
+			StartCoroutine(enableCollisions());
 		} else if (collisionInfo.gameObject == bottomColliderObject) {
+			transitionInEffect = true;
 			mapParent.moveBottom ();
-			transform.position = new Vector3(bottomArrivalColliderObject.transform.position.x, transform.position.y, transform.position.z);
+			transform.position = new Vector3(bottomArrivalColliderObject.transform.position.x, bottomArrivalColliderObject.transform.position.y, transform.position.z);
+			mapParent.finishUp();
+			StartCoroutine(enableCollisions());
 		} else if (collisionInfo.gameObject == leftColliderObject) {
+			transitionInEffect = true;
 			mapParent.moveLeft ();
-			transform.position = new Vector3(transform.position.x, transform.position.y, rightArrivalColliderObject.transform.position.z);
+			transform.position = new Vector3(transform.position.x, rightArrivalColliderObject.transform.position.y, rightArrivalColliderObject.transform.position.z);
+			mapParent.finishUp();
+			StartCoroutine(enableCollisions());
 		} else if (collisionInfo.gameObject == rightColliderObject) {
+			transitionInEffect = true;
 			mapParent.moveRight ();
-			transform.position = new Vector3(transform.position.x, transform.position.y, leftArrivalColliderObject.transform.position.z);
+			transform.position = new Vector3(transform.position.x, leftArrivalColliderObject.transform.position.y, leftArrivalColliderObject.transform.position.z);
+			mapParent.finishUp();
+			StartCoroutine(enableCollisions());
 		} else { } 
 	}
 
