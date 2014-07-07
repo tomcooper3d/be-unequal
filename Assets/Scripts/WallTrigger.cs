@@ -23,6 +23,12 @@ public class WallTrigger : MonoBehaviour {
 		mapParent = mapParentObject.GetComponent<MapParent> ();
 	}
 
+	void Update() {
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			Application.LoadLevel("LEVEL1");
+		}
+	}
+
 	public void updateColliders(Frame frame) {
 		topColliderObject = frame.topColliderObject;
 		bottomColliderObject = frame.bottomColliderObject;

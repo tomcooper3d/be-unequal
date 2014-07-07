@@ -74,7 +74,7 @@ public class InstructionController : MonoBehaviour
 				return;
 			}
 			if (Input.GetKeyDown(KeyCode.Escape)) {
-				Application.LoadLevel("Menu");
+				Application.LoadLevel("LEVEL1");
 			}
 			correct = false;
 			MoveControls ();
