@@ -15,7 +15,7 @@ Platform assembly: F:\GitHub Projects\be-unequal\Builds\PC Intersect\Intersect_D
 Loading F:\GitHub Projects\be-unequal\Builds\PC Intersect\Intersect_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: F:\GitHub Projects\be-unequal\Builds\PC Intersect\Intersect_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
 Loading F:\GitHub Projects\be-unequal\Builds\PC Intersect\Intersect_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
-- Completed reload, in  0.052 seconds
+- Completed reload, in  0.041 seconds
 desktop: 1920x1080 60Hz; virtual: 3840x1080 at -1920,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -65,11 +65,7 @@ hit a key
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
 
-hit a key
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-UnloadTime: 0.582966 ms
+UnloadTime: 0.506418 ms
 Not enough Switches are placed! OR to many. (6:Max/1:Min)
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
@@ -77,9 +73,9 @@ Not enough Switches are placed! OR to many. (6:Max/1:Min)
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
 Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 432.
-Total: 0.528932 ms (FindLiveObjects: 0.015309 ms CreateObjectMapping: 0.009005 ms MarkObjects: 0.085253 ms  DeleteObjects: 0.016210 ms)
+Total: 0.441277 ms (FindLiveObjects: 0.015309 ms CreateObjectMapping: 0.007204 ms MarkObjects: 0.079549 ms  DeleteObjects: 0.015309 ms)
 
-UnloadTime: 1.082179 ms
+UnloadTime: 0.601877 ms
 Not enough Switches are placed! OR to many. (6:Max/1:Min)
  
 (Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
@@ -87,7 +83,43 @@ Not enough Switches are placed! OR to many. (6:Max/1:Min)
 Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
 Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 430.
-Total: 0.837225 ms (FindLiveObjects: 0.026416 ms CreateObjectMapping: 0.014108 ms MarkObjects: 0.130281 ms  DeleteObjects: 0.006003 ms)
+Total: 0.413059 ms (FindLiveObjects: 0.013208 ms CreateObjectMapping: 0.007504 ms MarkObjects: 0.074746 ms  DeleteObjects: 0.003001 ms)
+
+2
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+dd0
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+dd1
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+hit a key
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+UnloadTime: 0.606680 ms
+Not enough Switches are placed! OR to many. (6:Max/1:Min)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 432.
+Total: 0.565555 ms (FindLiveObjects: 0.018611 ms CreateObjectMapping: 0.009606 ms MarkObjects: 0.098461 ms  DeleteObjects: 0.015609 ms)
+
+UnloadTime: 0.728257 ms
+Not enough Switches are placed! OR to many. (6:Max/1:Min)
+ 
+(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 430.
+Total: 0.544541 ms (FindLiveObjects: 0.017110 ms CreateObjectMapping: 0.009606 ms MarkObjects: 0.096360 ms  DeleteObjects: 0.003902 ms)
 
 2
  
