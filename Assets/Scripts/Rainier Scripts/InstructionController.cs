@@ -9,6 +9,7 @@ public class InstructionController : MonoBehaviour
 	private GameObject inScreen;
 	private GameObject outScreen;
 	private bool rotateInProgress;
+	private CameraRotate transition;
 
 
 	// Use this for initialization
@@ -20,6 +21,8 @@ public class InstructionController : MonoBehaviour
 		toCameraPosition = inScreen.transform.position;
 		toCameraPositionOut = outScreen.transform.position;
 		rotateInProgress = false;
+		transition = GameObject.FindWithTag("MainCamera").GetComponent<CameraRotate>();
+
 	}
 	
 	// Update is called once per frame
@@ -85,7 +88,7 @@ public class InstructionController : MonoBehaviour
 	{
 		toCameraPosition = inScreen.transform.position;
 		toCameraPositionOut = outScreen.transform.position;
-		if (correct == false) 
+		if (correct == false && transition.inTransition == false) 
 		{
 			iTween.MoveTo (this.gameObject, iTween.Hash ("position", toCameraPosition, "easetype", "easeOutBounce"));
 		} 
@@ -97,8 +100,8 @@ public class InstructionController : MonoBehaviour
 		{
 			rotateInProgress = false;
 			toCameraPositionOut = outScreen.transform.position;
-			iTween.MoveTo (this.gameObject, iTween.Hash ("position", toCameraPositionOut, "easetype", "easeOutBounce"));
+			iTween.MoveTo (this.gameObject, iTween.Hash ("position", toCameraPositionOut, "easetype", "linear", "time", 0F));
 		}
-			
-		}
+
+	}
 }

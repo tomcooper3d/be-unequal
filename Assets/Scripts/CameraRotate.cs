@@ -5,7 +5,7 @@ public class CameraRotate : MonoBehaviour {
 
 	public GameObject dd;
 	public AudioSource source;
-	private bool inTransition;
+	public bool inTransition;
 	private bool currentAngle;
 
 	private float initalYAngle = 315.0f;

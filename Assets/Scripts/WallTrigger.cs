@@ -19,6 +19,8 @@ public class WallTrigger : MonoBehaviour {
 	private bool transitionInEffect = false;
 	private GameObject blockingColliderUntilExit;
 
+	public AudioClip changeTileSound;
+
 	void Start () {
 		mapParent = mapParentObject.GetComponent<MapParent> ();
 	}
@@ -48,34 +50,42 @@ public class WallTrigger : MonoBehaviour {
 		transitionInEffect = false;
 	}
 
-	void OnTriggerEnter(Collider collisionInfo) {
-		if (transitionInEffect) {
+	void OnTriggerEnter(Collider collisionInfo) 
+	{
+
+		if (transitionInEffect) 
+		{
 			return;
 		}
+
 		if (collisionInfo.gameObject == topColliderObject) {
 			transitionInEffect = true;
 			mapParent.moveTop ();
 			transform.position = new Vector3(topArrivalColliderObject.transform.position.x, topArrivalColliderObject.transform.position.y, transform.position.z);
 			mapParent.finishUp();
 			StartCoroutine(enableCollisions());
+			audio.PlayOneShot(changeTileSound, 0.4F);
 		} else if (collisionInfo.gameObject == bottomColliderObject) {
 			transitionInEffect = true;
 			mapParent.moveBottom ();
 			transform.position = new Vector3(bottomArrivalColliderObject.transform.position.x, bottomArrivalColliderObject.transform.position.y, transform.position.z);
 			mapParent.finishUp();
 			StartCoroutine(enableCollisions());
+			audio.PlayOneShot(changeTileSound, 0.4F);
 		} else if (collisionInfo.gameObject == leftColliderObject) {
 			transitionInEffect = true;
 			mapParent.moveLeft ();
 			transform.position = new Vector3(transform.position.x, rightArrivalColliderObject.transform.position.y, rightArrivalColliderObject.transform.position.z);
 			mapParent.finishUp();
 			StartCoroutine(enableCollisions());
+			audio.PlayOneShot(changeTileSound, 0.4F);
 		} else if (collisionInfo.gameObject == rightColliderObject) {
 			transitionInEffect = true;
 			mapParent.moveRight ();
 			transform.position = new Vector3(transform.position.x, leftArrivalColliderObject.transform.position.y, leftArrivalColliderObject.transform.position.z);
 			mapParent.finishUp();
 			StartCoroutine(enableCollisions());
+			audio.PlayOneShot(changeTileSound, 0.4F);
 		} else { } 
 	}
 

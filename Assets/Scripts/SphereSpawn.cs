@@ -6,6 +6,7 @@ public class SphereSpawn : MonoBehaviour {
 	public bool waitForButtonPress;
 	public TransitionBackgroundPlane plane;
 	public GameObject halo;
+	public AudioClip spawingSound;
 
 	public float asendFromHeight = 20.0f;
 
@@ -21,6 +22,7 @@ public class SphereSpawn : MonoBehaviour {
 			iTween.MoveBy(this.gameObject, iTween.Hash("y", -asendFromHeight, "easeType", "easeInOutExpo", "oncomplete", "hideHalo"));
 			waitForButtonPress = false;
 			hasSpawned = true;
+			audio.PlayOneShot(spawingSound, 0.6F);
 		}
 	}
 
@@ -35,6 +37,7 @@ public class SphereSpawn : MonoBehaviour {
 	}
 
 	public void win () {
+		audio.PlayOneShot(spawingSound, 0.6F);
 		halo.SetActive(true);
 		this.GetComponent<CharacterMotor>().canControl = false;	
 		this.GetComponent<CharacterMotor>().movement.maxFallSpeed = 0.0f;
